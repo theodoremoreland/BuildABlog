@@ -1,4 +1,4 @@
-from flask import Flask, request, redirect, render_template, flash
+from flask import Flask, request, redirect, render_template, session, flash
 from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
@@ -6,6 +6,7 @@ app.config['DEBUG'] = True
 app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://build-a-blog:bproductive@localhost:8889/build-a-blog'
 app.config['SQLALCHEMY_ECHO'] = True
 db = SQLAlchemy(app)
+app.secret_key = 'y337kGcys&zPzqrsB'
 
 
 
@@ -38,9 +39,6 @@ def userblog():
 @app.route('/newpost', methods=['POST', 'GET'])
 def new_post():
 
-    blog_id = request.args.get("id")
-
-
     if request.method == 'POST':
         entry = request.form['entry']
         title = request.form['title']
@@ -50,9 +48,11 @@ def new_post():
             blog = Blog(title, entry)
             db.session.add(blog)
             db.session.commit()
+            blogs = Blog.query.all()
+            blog_id = len(blogs)
+
         
-        
-            return render_template('newblog.html', blog=blog)
+            return redirect("/blog?id=" + str(blog_id))
     
 
     return render_template('newpost.html')
