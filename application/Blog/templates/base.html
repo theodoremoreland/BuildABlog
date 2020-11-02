@@ -1,0 +1,24 @@
+<!doctype html>
+<html>
+    
+<body>
+    <div>
+        <a href='/'>Blog</a>
+    </div>
+    <div>
+        <a href='/create-blog'>Create an Entry</a>
+    </div>
+
+    {% with messages = get_flashed_messages() %}
+        <ul>
+        {% for message in messages %}
+            <li>{{message}}</li>
+        {% endfor %}
+        </ul>
+    {% endwith %}
+
+    {% block content %}
+    {% endblock %}
+
+</body>
+</html>

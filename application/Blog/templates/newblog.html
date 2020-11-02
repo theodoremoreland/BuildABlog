@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block content %}
+    <h1>Build a Blog!</h1>
+
+    <p>
+        <a href="/blog?id={{blog.id}}">
+            {{blog.title}}
+        </a>
+    </p>
+    <p>{{blog.entry}}</p>
+    <hr>
+{% endblock %}
