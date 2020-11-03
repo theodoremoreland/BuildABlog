@@ -10,8 +10,8 @@ home = Blueprint(
     static_folder='static'
     )
 
-@home.route('/', methods=['POST', 'GET'])
-def userblog():
+@home.route('/', methods=['GET'])
+def render_blog():
     blog_id = request.args.get("id")
     
     if blog_id:
@@ -19,4 +19,4 @@ def userblog():
     else: 
         blog = Blog.query.all()
 
-    return render_template('blog.html', blogs=blog)
+    return render_template('blog.html', blog=blog)

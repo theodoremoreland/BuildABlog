@@ -3,16 +3,16 @@ from flask import Flask, request, redirect, session, flash, render_template
 
 from ..models import db, Blog
 
-create_blog = Blueprint(
-    'create_blog',
+create_blog_post = Blueprint(
+    'create_blog_post',
     __name__, 
     template_folder='templates',
     static_folder='static'
     )
 
 
-@create_blog.route('/create-blog', methods=['POST', 'GET'])
-def new_post():
+@create_blog_post.route('/create-blog-post', methods=['POST', 'GET'])
+def create_post():
     if request.method == 'POST':
         entry = request.form['entry']
         title = request.form['title']
@@ -26,6 +26,6 @@ def new_post():
             blogs = Blog.query.all()
             blog_id = len(blogs)
 
-            return redirect("/blog?id=" + str(blog_id))
+            return redirect("/blog-post?id=" + str(blog_id))
     
-    return render_template('newpost.html')
+    return render_template('create_blog_post.html')
