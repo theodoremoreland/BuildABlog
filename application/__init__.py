@@ -3,9 +3,9 @@ from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 
 # Custom
-from .Home.routes import home
-from .CreateBlogPost.routes import create_blog_post
-from .BlogPost.routes import blog_post
+from .blueprints.Home.views import home
+from .blueprints.CreateBlogPost.views import create_blog_post
+from .blueprints.BlogPost.views import blog_post
 
 
 db = SQLAlchemy()

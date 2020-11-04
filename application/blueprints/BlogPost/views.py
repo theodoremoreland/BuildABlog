@@ -1,7 +1,7 @@
 from flask import Blueprint, render_template
 from flask import Flask, request, redirect, session, flash, render_template
 
-from ..models import Blog
+from ...models import Blog
 
 blog_post = Blueprint(
     'blog_post',
