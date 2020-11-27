@@ -26,6 +26,6 @@ def create_post():
             blogs = Blog.query.all()
             blog_id = len(blogs)
 
-            return redirect("/blog-post?id=" + str(blog_id))
+            return redirect("/blog-post?blog_post_id=" + str(blog_id))
     
     return render_template('create_blog_post.html')
