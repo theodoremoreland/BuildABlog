@@ -23,8 +23,7 @@ def create_post():
             blog = Blog(title, entry)
             db.session.add(blog)
             db.session.commit()
-            blogs = Blog.query.all()
-            blog_id = len(blogs)
+            blog_id = Blog.query.filter_by(title=title, entry=entry).first().id
 
             return redirect("/blog-post?blog_post_id=" + str(blog_id))
     
