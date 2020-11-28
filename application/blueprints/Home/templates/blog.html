@@ -1,13 +1,19 @@
 {% extends "base.html" %}
 {% block content %}
-    <h2>Posts</h2>
+    <h2 class="header">Blog Posts</h2>
+
     {% for blog_post in blog %}
-        <p>
-            <a href="/blog-post?blog_post_id={{blog_post.id}}">
-                {{blog_post.title}}
-            </a>
-        </p>
-        <p>{{blog_post.entry}}</p>
-        <hr>
+        <div class="card" style="width: 40rem; height: 10rem;">
+            <div class="card-body">
+                <h5 class="card-title">{{blog_post.title}}</h5>
+                <h6 class="card-subtitle mb-2 text-muted"></h6>
+                <p class="card-text">
+                    {{blog_post.entry[0:50]}}...
+                </p>
+                <a href="/blog-post?blog_post_id={{blog_post.id}}">
+                    View Blog Post
+                </a>
+            </div>
+        </div>
     {% endfor %}
 {% endblock %}
